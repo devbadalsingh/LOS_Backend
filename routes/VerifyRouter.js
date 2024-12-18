@@ -27,17 +27,20 @@ const router = express.Router();
 router.post("/mobile/get-otp", mobileGetOtp);
 router.post("/mobile/verify-otp", verifyOtp);
 
-// Bank Verify
+// Add Bank and  Verify through pennydrop
 router.route("/bank/:id").post(bankVerification);
+
+
+//  *********** Aadhaar verification process *************************
 
 // send Aadhaar verification mail
 router.route("/generate-link/:id").get(protect, generateAadhaarLink);
-
-// aadhaar verify
-// router.post('/aadhaar/:id');
+// Barrower get OTP
 router.route("/aadhaar").get(aadhaarMiddleware, aadhaarOtp);
 // Aadhaar OTP submitted by Borrower
 router.post("/submit-aadhaar-otp", aadhaarMiddleware, saveAadhaarDetails);
+
+// Check Aadhaar details and verify 
 router
     .route("/verifyAadhaar/:id")
     .get(protect, checkAadhaarDetails)

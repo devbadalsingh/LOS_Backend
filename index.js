@@ -28,11 +28,11 @@ const app = express();
 // CORS configuration
 var corsOption = {
     origin: [
-        "https://www.qualoan.com",
-        "https://qualoan.com",
+        "https://www.loanonsalary.com",
+        "https://loanonsalary.com",
         "http://localhost:5173",
-        "https://www.crm.qualoan.com",
-        "https://crm.qualoan.com",
+        "https://www.crm.loanonsalary.com",
+        "https://crm.loanonsalary.com",
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
