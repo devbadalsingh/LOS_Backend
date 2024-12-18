@@ -91,7 +91,7 @@ async function submitOTP(event) {
                 alert("OTP Verified Successfully!");
                 localStorage.clear();
                 // Redirect or open the next page
-                window.location.href = "/otp-success"; // Replace `/next-page` with your actual URL
+                window.location.href = "/aadhaarVerificationTemplate/verify-aadhaar-success"; // Replace `/next-page` with your actual URL
             } else {
                 alert(data.message || "OTP verification failed.");
             }

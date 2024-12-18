@@ -28,7 +28,7 @@ async function requestOtp() {
 
             localStorage.setItem("aadhaarInfo", JSON.stringify(aadhaarInfo));
             console.log(localStorage.getItem("aadhaarInfo"));
-            window.location.href = `/otp-page`;
+            window.location.href = `/aadhaarVerificationTemplate/`;
         } else {
             alert(result.message || "Failed to request OTP. Please try again.");
         }
