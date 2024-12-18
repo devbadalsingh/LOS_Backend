@@ -18,6 +18,7 @@ import sanctionRouter from "./routes/SanctionRouter.js";
 import disbursalRouter from "./routes/DisbursalRouter.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import { requireSessionToken } from "./middleware/authMiddleware.js";
+import TemplateRouter from "./routes/TemplateRouter.js"
 
 const PORT = process.env.PORT || 3000;
 connectDB();
@@ -71,15 +72,6 @@ app.set("views", join(process.cwd(), "views"));
 app.get("/", (req, res) => {
     res.send("API is running.......");
 });
-app.get(`/verify-aadhaar`, requireSessionToken, (req, res) => {
-    res.render("otpRequest");
-});
-app.get(`/otp-page`, requireSessionToken, (req, res) => {
-    res.render("otpInput");
-});
-app.get(`/otp-success`, requireSessionToken, (req, res) => {
-    res.render("otpSuccess");
-});
 
 app.use("/api/mobile", appRouter); // Use the mobile routes
 app.use("/api/accounts", accountRouter); // Use the account routes
@@ -91,6 +83,7 @@ app.use("/api/employees", employeeRouter); // Use the employee routes
 app.use("/api/leads", leadRouter); // Use the lead routes
 app.use("/api/sanction", sanctionRouter); // Use teh sanction letter
 app.use("/api/verify", verifyRouter); // Use the verify routes sevice to verify PAN and aadhaar
+app.use("/aadhaarVerificationTemplate", TemplateRouter); // Use the verify routes sevice to verify PAN and aadhaar
 
 // Error handling middleware
 app.use(notFound);

@@ -10,6 +10,7 @@ const s3 = new S3({ region, accessKeyId, secretAccessKey });
 // Upload files to S3
 async function uploadFilesToS3(buffer, key) {
     const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25 MB
+    // console.log('aws',bucketName,buffer,key,secretAccessKey,region,accessKeyId)
     try {
         // Check file size before uploading
         if (buffer.length > MAX_FILE_SIZE) {
@@ -21,9 +22,12 @@ async function uploadFilesToS3(buffer, key) {
             Body: buffer,
             Key: key,
         };
-        return await s3.upload(params).promise();
+        const res = await s3.upload(params).promise();
+        return res
     } catch (error) {
-        console.log(error);
+        // return error.statusCode
+        console.log("aws res error",error);
+        throw new Error("Something is wrong!")
     }
 }
 
