@@ -20,8 +20,8 @@ export const generateAadhaarLink = asyncHandler(async (req, res) => {
     req.session.token = token;
 
     const customerName = `${fName}${mName && ` ${mName}`} ${lName}`;
-    const link = `https://crm.loanonsalary.com/verify-aadhaar`;
-    // const link = `http://localhost:8080/verify-aadhaar`;
+    const link = `https://api.loanonsalary.com/aadhaarVerificationTemplate/verify-aadhaar-request`;
+    // const link = `http://localhost:8080/aadhaarVerificationTemplate/verify-aadhaar-request`;
     const result = await aadhaarKyc(lead.mobile, lead.fName, lead.lName, link);
 
     if (result.data.ErrorMessage === "Success") {
