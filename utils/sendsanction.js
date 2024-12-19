@@ -33,15 +33,17 @@ export const generateSanctionLetter = async (
             camDetails
         );
 
+        console.log('zepto 1')
         // Save the sanction letter in S3
         const result = await htmlToPdf(lead, htmlToSend);
-
+        
         // Create form-data and append the PDF buffer
         const formData = new FormData();
         formData.append("file", Buffer.from(result), {
             filename: `sanction_${fullname}.pdf`,
             contentType: "application/pdf",
         });
+        console.log('zepto 2')
 
         const stepOne = await initiate(
             lead.fName,
@@ -50,13 +52,13 @@ export const generateSanctionLetter = async (
             lead.mobile
         );
 
+        console.log('zoho key',process.env.ZOHO_APIKEY)
+
+        console.log('mail credential',recipientEmail,fullname,subject)
         const stepTwoAndThree = await sendLinkToCustomer(stepOne, formData);
 
         // console.log(stepTwoAndThree);
 
-        console.log('zoho key',process.env.ZOHO_APIKEY)
-
-        console.log('mail credential',recipientEmail,fullname,subject)
 
         // Setup the options for the ZeptoMail API
         const options = {
