@@ -37,13 +37,13 @@ export const generateSanctionLetter = async (
         // Save the sanction letter in S3
         const result = await htmlToPdf(lead, htmlToSend);
         
+        console.log('zepto 2',result)
         // Create form-data and append the PDF buffer
         const formData = new FormData();
         formData.append("file", Buffer.from(result), {
             filename: `sanction_${fullname}.pdf`,
             contentType: "application/pdf",
         });
-        console.log('zepto 2')
 
         const stepOne = await initiate(
             lead.fName,
