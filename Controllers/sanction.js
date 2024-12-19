@@ -233,19 +233,20 @@ export const sanctionApprove = asyncHandler(async (req, res) => {
                 `${sanction.application.applicant.personalDetails.personalEmail}`
             );
 
-            console.log(emailResponse);
+            console.log("returned response",emailResponse);
 
             // Return a unsuccessful response
             if (!emailResponse.success) {
                 
                 return res.status(400).json({ success: false });
             }
+          
 
             const update = await Sanction.findByIdAndUpdate(
                 id,
                 {
                     loanNo: newLoanNo,
-                    sanctionDate: response.sanctionDate,
+                    sanctionDate: response.sanctionDate.toISOString().replace('Z', '+00:00'),
                     isApproved: true,
                     approvedBy: req.employee._id.toString(),
                 },

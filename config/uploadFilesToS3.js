@@ -27,7 +27,7 @@ async function uploadFilesToS3(buffer, key) {
     } catch (error) {
         // return error.statusCode
         console.log("aws res error",error);
-        throw new Error("Something is wrong!")
+        throw new Error("Something went wrong!")
     }
 }
 
