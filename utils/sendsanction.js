@@ -54,13 +54,18 @@ export const generateSanctionLetter = async (
 
         // console.log(stepTwoAndThree);
 
+        console.log('zoho key',process.env.ZOHO_APIKEY)
+
+        console.log('mail credential',recipientEmail,fullname,subject)
+
         // Setup the options for the ZeptoMail API
         const options = {
             method: "POST",
             url: "https://api.zeptomail.in/v1.1/email",
             headers: {
                 accept: "application/json",
-                authorization: `Zoho-enczapikey PHtE6r1eFL/rjzF68UcBsPG/Q8L1No16/b5jKgkU44hBCPMFS00Eo49/xjO/ohkqU6JBRqTJy45v572e4u/TcWflNm1JWGqyqK3sx/VYSPOZsbq6x00etVkdd03eVoLue95s0CDfv9fcNA==`,
+                authorization:`Zoho-enczapikey ${process.env.ZOHO_APIKEY}`,
+                // authorization: `Zoho-enczapikey PHtE6r1eFL/rjzF68UcBsPG/Q8L1No16/b5jKgkU44hBCPMFS00Eo49/xjO/ohkqU6JBRqTJy45v572e4u/TcWflNm1JWGqyqK3sx/VYSPOZsbq6x00etVkdd03eVoLue95s0CDfv9fcNA==`,
                 "cache-control": "no-cache",
                 "content-type": "application/json",
             },
