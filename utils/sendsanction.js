@@ -65,7 +65,7 @@ export const generateSanctionLetter = async (
                 "content-type": "application/json",
             },
             data: JSON.stringify({
-                from: { address: "info@qualoan.com" },
+                from: { address: "info@loanonsalary.com" },
                 to: [
                     {
                         email_address: {
@@ -80,6 +80,7 @@ export const generateSanctionLetter = async (
         };
         // Make the request to the ZeptoMail API
         const response = await axios(options);
+        console.log('zepto response',response)
         if (response.data.message === "OK") {
             // await htmlToPdf(lead, htmlToSend);
             return {
